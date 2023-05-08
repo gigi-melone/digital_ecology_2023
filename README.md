@@ -2,3 +2,5 @@
 final project guide and code 
 
 Please read the file: ento375guide.pdf for instructions! 
+
+download the pdf to access links to products and software! 
