@@ -1,0 +1,146 @@
+---
+author: "Gigi Melone"
+title: "ENTO375 Final Project Construction/Usage Guide "
+output: html_document
+date: "2023-05-08"
+---
+
+## So you want to take videos of caterpillars on leaves? or something similar... Here's how!
+
+
+## Supplies
+
+
+### Camera mount 
+
+* [ring stand](https://www.arborsci.com/products/ring-stand-6-x-9-base-24-rod)
+
+* [ring stand clamp with 1/4"-20 threaded  mount](https://www.amazon.com/Obeamiu-15-5-25-5-Adjustable-Tabletop-Microphone/dp/B08ZHZPF52)
+
+* [utility light + bulb](https://www.homedepot.com/p/HDX-600-Lumens-Integrated-LED-Clamplight-DA023-S/311560193)
+
+
+### Camera/Microcomputer/Monitor
+
+* [raspberrypi high resolution camera (12mm)](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/)
+
+* [raspberrypi4 microcomputer board](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
+
+* [raspberrypi ribbon cable](https://www.amazon.com/Arducam-Octoprint-Monitor-Extension-Raspberry/dp/B087FDJ2RP/ref=sr_1_4?keywords=raspberry+pi+ribbon+cable&qid=1683562840&sr=8-4)
+
+* [HDMI cable](https://www.raspberrypi.com/products/micro-hdmi-to-standard-hdmi-a-cable/)
+
+* [monitor](https://www.amazon.com/PHILIPS-Monitor-Replacement-Warranty-221V8LN/dp/B0BRR4ZGNP?ref_=Oct_d_onr_d_1292115011_0&pd_rd_w=aQj4s&content-id=amzn1.sym.4fed9226-5c93-4eb3-a4f6-42a3e28a27b9&pf_rd_p=4fed9226-5c93-4eb3-a4f6-42a3e28a27b9&pf_rd_r=FF4N0FGYQ9P4FMRJ8HW9&pd_rd_wg=TIfOG&pd_rd_r=8695393d-6048-4f10-92b8-70dd2dc862fc&pd_rd_i=B0BRR4ZGNP&th=11)
+
+* [keyboard](https://www.raspberrypi.com/products/raspberry-pi-keyboard-and-hub/)
+
+* [mouse](https://www.raspberrypi.com/products/raspberry-pi-mouse/)
+
+* [USB-C power supply](https://www.raspberrypi.com/products/type-c-power-supply/)
+
+* [256GB thumb drive](https://www.amazon.com/SanDisk-Ultra-Flair-256GB-Flash/dp/B06XG9XP49/ref=sr_1_3?crid=1EQWZQEHKRSC9&keywords=256%2Bgb%2Bthumb%2Bdrive&qid=1683560078&sprefix=256%2Bgb%2B%2Caps%2C123&sr=8-3&th=1)
+
+* white acrylic or other white background (contruction paper, white painted cardboard, bench paper)
+
+
+### Plant stuff 
+
+* [scale for leaf byte](https://zoegp.science/LeafByte%20Scale%20Dots.pdf)
+
+* [500 mL Erlenmeyer flask](https://www.amazon.com/Pyrex-Narrow-Mouth-Erlenmeyer-Flasks/dp/B07D314YJD?th=1)
+
+* plant of choice 
+
+
+### Software 
+
+* [leafbyte](https://zoegp.science/leafbyte)
+
+* [recording videos](https://github.com/gigi-melone/digital_ecology_2023/blob/main/record_video_gigi.sh)
+
+* [setting crontab](https://github.com/gigi-melone/digital_ecology_2023/blob/main/crontab) 
+
+* [blob tracking](https://github.com/gigi-melone/digital_ecology_2023/blob/main/import%20cv2.py) 
+
+
+# Instructions for setup 
+
+## Video recording hardware setup 
+
+1. find a flat surface with access to power. Place ring stand on surface and tighten clasp at preferred height. place white background below the viewing area of the camera 
+
+2. attach raspberrypi camera to raspberrypi microcomputer using the ribbon cable 
+
+3. attach raspberrypi camera to ring clasp 
+
+4. secure raspberrypi microcomputer to ring clasp (ex. zip ties)
+
+5. plug in hdmi cable, USB-C power cable, 256GB thumb drive, and mouse/keyboard to microcomputer HDMI/USB-C/USB ports, respectively ![pi setup](/Users/gigimelone/Downloads/IMG_3624.jpeg)
+
+6. plug in cables to monitor (HDMI, keyboard, mouse) or power source (USB-C power cable)
+
+7. once you are connected to the monitor, test your camera using the command libcamera-hello in terminal 
+
+8. place your focal species in erlenmeyer flask below the camera 
+
+9. use the command libcamera-vid in terminal 
+
+10. adjust your camera settings (focus and aperature) using the two knobs on the raspberry pi camera  
+
+11. (optional) if you do not have a consisten light source (ex. motion sensor lights), attach a utility light to your ring stand and aim the light at your target, adjust aperature accordingly
+
+
+## this is what your setup should look like: ![full setup](/Users/gigimelone/Downloads/IMG_3399.jpeg)
+
+
+## Herbivory damage hardware setup 
+
+1. cut off individual leaves and place on the leafbyte scale 
+
+2. adjust height of raspberrypi module (microcomputer + camera) and camera settings accordingly 
+
+3. use the command libcamera-jpeg -o /folderpath/filename.jpeg to take a picture of your damaged leaf 
+
+
+### this is what your setup should look like: ![herbivory setup](/Users/gigimelone/Downloads/IMG_3442.jpeg)
+
+
+## Video recording software 
+
+1. save the bash script: record_video.sh to your raspberrypi (see github link above)  
+
+2. open crontab by running the command: crontab -e in terminal
+
+3. use the nano-1 crontab, and adjust  crontab to take videos on schedule and run the record_video.sh script (see github links above)
+
+4. reboot your pi to engage the new crontab 
+
+5. check the folder you have set the videos to be saved in to make sure videos are being recorded
+
+
+## Leafbyte software use 
+
+1. download leafbyte from link in setup
+
+2. follow instructions from leafbyte to save herbivory data 
+
+
+## Blob tracking software use 
+
+1. download python file (import cv2.py) from github (see link above)
+
+2. run in terminal: 
+
+  1. use command cd to enter directory containing the python file, ex. cd /path_to_file/ 
+  
+  2. enter python3 import_cv2.py
+  
+2. or run in preferred GUI (ex. VSCode) 
+
+3. remember to change pathnames! 
+
+*note that you may choose to use a different method for blob tracking, this is very basic* 
+
+
+*** Please note that links are just suggestions, and may no longer be available or ideal for your needs, please use your best judgment to purchase items that are appropriate for your project
+
