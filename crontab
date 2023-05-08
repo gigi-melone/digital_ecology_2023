@@ -1,0 +1,6 @@
+#mount thumbdrive and give access to save videos to thumb drive
+@reboot sudo mount /dev/sda1 /mnt/catvid -o umask=000
+@reboot sudo chmod -R ugo+rwx /mnt/catvid
+
+#take videos every 10 minutes
+#*/10  * * * * ~/Desktop/record_video_gigi.sh
